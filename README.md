@@ -1,2 +1,2 @@
 # SYSTEM-RAM-OP.github.io
-第三方可调用插件库
+第三方插件库
