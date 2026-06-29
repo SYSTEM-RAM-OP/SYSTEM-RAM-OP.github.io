@@ -1,15 +1,6 @@
 {
   "extensions": [
     {
-      "id": "WinUI 3",
-      "name": "WinUI 3",
-      "description": "从我的插件站自动加载的扩展",
-      "slug": "WinUI 3",
-      "image": "https://SYSTEM-RAM-OP.github.io/icons/WinUI 3.svg",
-      "scratchCompatible": false,
-      "docs": false,
-      "by": [],
-      "original": []
     }
   ]
 }
