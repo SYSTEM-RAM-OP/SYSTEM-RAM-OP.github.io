@@ -1,0 +1,15 @@
+{
+  "extensions": [
+    {
+      "id": "QwQ AI大模型",
+      "name": "QwQ AI大模型",
+      "description": "QwQ AI大模型",
+      "slug": "extensions/QwQ AI大模型",
+      "image": "https://你的网址/icon.svg",
+      "scratchCompatible": false,
+      "docs": false,
+      "by": [],
+      "original": []
+    }
+  ]
+}
