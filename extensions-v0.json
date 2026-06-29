@@ -1,6 +1,15 @@
 {
   "extensions": [
     {
+      "id": "QwQ AI",
+      "name": "QwQ AI",
+      "description": "从我的插件站自动加载的扩展",
+      "slug": "QwQ AI",
+      "image": "https://SYSTEM-RAM-OP.github.io/icons/QwQ AI.svg",
+      "scratchCompatible": false,
+      "docs": false,
+      "by": [],
+      "original": []
     }
   ]
 }
