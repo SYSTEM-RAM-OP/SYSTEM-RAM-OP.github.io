@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>我的插件站</title>
+    <style>
+        /* 仿照 TurboWarp 的极简设计风格 */
+        body { font-family: system-ui, -apple-system, sans-serif; background: #f9f9f9; margin: 0; padding: 20px; }
+        .header { max-width: 1200px; margin: 0 auto 40px auto; display: flex; align-items: center; justify-content: space-between; }
+        .header h1 { font-size: 28px; color: #333; margin: 0; }
+        .extension-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: transform 0.2s, box-shadow 0.2s; border: 1px solid #eee; display: flex; flex-direction: column; }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+        .card img { width: 60px; height: 60px; object-fit: contain; margin-bottom: 15px; }
+        .card h3 { margin: 0 0 8px 0; font-size: 18px; color: #222; }
+        .card p { margin: 0 0 auto 0; font-size: 14px; color: #666; line-height: 1.5; }
+        .card-tags { margin-top: 15px; display: flex; gap: 8px; }
+        .tag { background: #efefef; color: #555; padding: 4px 10px; border-radius: 20px; font-size: 12px; }
+        .tag-tw { background: #ff4d4f; color: #fff; }
+        .card-btn { margin-top: 15px; background: #ff4d4f; color: #fff; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; text-align: center; font-weight: bold; text-decoration: none; }
+        .card-btn:hover { background: #e03e40; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>我的扩展库</h1>
+    </div>
+    
+    <!-- 这里用来动态加载卡片 -->
+    <div id="root" class="extension-grid"></div>
+
+    <script>
+        // 读取并渲染数据
+        fetch('extensions-v0.json')
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById('root');
+                data.extensions.forEach(ext => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <img src="${ext.image || 'https://extensions.turbowarp.org/images/unknown.svg'}" alt="${ext.name}">
+                        <h3>${ext.name}</h3>
+                        <p>${ext.description || '暂无描述'}</p>
+                        <div class="card-tags">
+                            <span class="tag tag-tw">TurboWarp</span>
+                        </div>
+                        <a href="https://turbowarp.org/editor?extension=${ext.slug}" target="_blank" class="card-btn">在编辑器中打开</a>
+                    `;
+                    container.appendChild(card);
+                });
+            })
+            .catch(err => console.error('加载失败', err));
+    </script>
+</body>
+</html>
