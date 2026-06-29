@@ -4,6 +4,7 @@ const path = require('path');
 // 设置你的插件根目录
 const extDir = path.join(__dirname, 'extensions');
 const outputFile = path.join(__dirname, 'extensions-v0.json');
+const BASE_URL = 'https://SYSTEM-RAM-OP.github.io';
 
 // 递归获取所有 js 文件（支持子文件夹）
 function getAllJSFiles(dir, baseDir = '') {
@@ -37,7 +38,7 @@ const extensions = filePaths.map(relativePath => {
         name: name,
         description: "从我的插件站自动加载的扩展",
         slug: slug,
-        image: `https://system-ram-op.github.io /icons/${slug.split('/').pop()}.svg`,
+        image: `${BASE_URL}/icons/${slug.split('/').pop()}.svg`,
         scratchCompatible: false,
         docs: false,
         by: [],
