@@ -37,7 +37,7 @@ const extensions = filePaths.map(relativePath => {
         name: name,
         description: "从我的插件站自动加载的扩展",
         slug: slug,
-        image: `https://你的域名/icons/${slug.split('/').pop()}.svg`,
+        image: `https://system-ram-op.github.io /icons/${slug.split('/').pop()}.svg`,
         scratchCompatible: false,
         docs: false,
         by: [],
