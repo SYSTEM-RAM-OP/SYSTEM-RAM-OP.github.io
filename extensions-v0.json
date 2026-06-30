@@ -1,3 +1,15 @@
 {
-  "extensions": []
+  "extensions": [
+    {
+      "id": "Mecllçç½æäºé³ä¹apiï¼æ­£å¼çï¼ (1)",
+      "name": "Mecllçç½æäºé³ä¹Apiï¼æ­£å¼çï¼ (1)",
+      "description": "从我的插件站自动加载的扩展",
+      "slug": "Mecllçç½æäºé³ä¹apiï¼æ­£å¼çï¼ (1)",
+      "image": "https://SYSTEM-RAM-OP.github.io/icons/Mecllçç½æäºé³ä¹apiï¼æ­£å¼çï¼ (1).svg",
+      "scratchCompatible": false,
+      "docs": false,
+      "by": [],
+      "original": []
+    }
+  ]
 }
