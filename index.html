@@ -109,29 +109,29 @@
     <div id="root" class="extension-grid"></div>
 
     <script>
-        // 读取你 GitHub 上的 JSON 数据
-        fetch('extensions-v0.json')
-            .then(res => res.json())
-            .then(data => {
-                const container = document.getElementById('root');
-                
-                data.extensions.forEach(ext => {
-                    const card = document.createElement('div');
-                    card.className = 'card';
-                    
-                    // 去除了底部的“在编辑器中打开”按钮的 HTML 代码
-                    card.innerHTML = `
-                        <img src="${ext.image || 'https://extensions.turbowarp.org/images/unknown.svg'}" alt="${ext.name}">
-                        <h3>${ext.name}</h3>
-                        <p>${ext.description || '暂无描述'}</p>
-                        <div class="card-tags">
-                            <span class="tag tag-tw">TurboWarp</span>
-                        </div>
-                    `;
-                    container.appendChild(card);
-                });
-            })
-            .catch(err => console.error('加载失败', err));
+    // 1. 把地址换成你刚刚在 Cloudflare 部署的 Worker 地址
+    fetch('https://a.mmmh74mmmmh.workers.dev')
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('root');
+            
+            // 2. 注意！Worker 返回的数据格式是 { "extensions": [...] }
+            // 所以这里一定要加上 .extensions，否则会报错找不到数据
+            data.extensions.forEach(ext => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <img src="${ext.image || 'https://extensions.turbowarp.org/images/unknown.svg'}" alt="${ext.name}">
+                    <h3>${ext.name}</h3>
+                    <p>${ext.description || '暂无描述'}</p>
+                    <div class="card-tags">
+                        <span class="tag tag-tw">TurboWarp</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        })
+        .catch(err => console.error('加载失败', err));
     </script>
 </body>
 </html>
