@@ -1,47 +1,59 @@
 const fs = require('fs');
 const path = require('path');
 
-// 设置你的插件根目录
+// 设置路径
 const extDir = path.join(__dirname, 'extensions');
 const outputFile = path.join(__dirname, 'extensions-v0.json');
 const BASE_URL = 'https://SYSTEM-RAM-OP.github.io';
 
-// 递归获取所有 js 文件（支持子文件夹）
-function getAllJSFiles(dir, baseDir = '') {
+// 递归查找所有 .js 文件
+function getAllJSFiles(dir) {
     let results = [];
     const list = fs.readdirSync(dir);
     list.forEach(file => {
         const filePath = path.join(dir, file);
         const stat = fs.statSync(filePath);
         if (stat && stat.isDirectory()) {
-            // 如果是文件夹，递归进去找
-            results = results.concat(getAllJSFiles(filePath, path.join(baseDir, file)));
+            results = results.concat(getAllJSFiles(filePath));
         } else if (file.endsWith('.js')) {
-            // 如果是 js 文件，记录下相对于根目录的路径
-            const relativePath = path.join(baseDir, file);
-            results.push(relativePath);
+            results.push(filePath);
         }
     });
     return results;
 }
 
-// 1. 扫描 extensions 目录
-const filePaths = getAllJSFiles(extDir);
+// 1. 扫描扩展
+const jsFiles = getAllJSFiles(extDir);
+const extensions = jsFiles.map(filePath => {
+    const fileName = path.basename(filePath, '.js');
+    const slug = fileName;
 
-const extensions = filePaths.map(relativePath => {
-    // 去掉 .js 后缀，把反斜杠统一换成斜杠（兼容 Windows/Linux）
-    let slug = relativePath.replace(/\.js$/, '').replace(/\\/g, '/');
-    const name = slug.split('/').pop().replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    // 尝试读取同名的 .json 元数据
+    const metaPath = path.join(path.dirname(filePath), `${fileName}.json`);
+    let meta = { 
+        name: fileName.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()), 
+        description: '暂无描述', 
+        author: '' 
+    };
+    
+    if (fs.existsSync(metaPath)) {
+        try {
+            const metaData = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
+            meta = { ...meta, ...metaData };
+        } catch (e) {
+            console.warn(`⚠️ 读取 ${fileName}.json 失败，使用默认设置`);
+        }
+    }
 
     return {
         id: slug,
-        name: name,
-        description: "从我的插件站自动加载的扩展",
+        name: meta.name,
+        description: meta.description,          // 简介
         slug: slug,
-        image: `${BASE_URL}/icons/${slug.split('/').pop()}.svg`,
+        image: `${BASE_URL}/icons/${fileName}.svg`,
         scratchCompatible: false,
         docs: false,
-        by: [],
+        by: meta.author ? [meta.author] : [],   // 作者
         original: []
     };
 });
