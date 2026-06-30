@@ -1,17 +1,6 @@
 {
   "extensions": [
     {
-      "id": "Mecll cloudmusic api",
-      "name": "Mecll cloudmusic api",
-      "description": "qwq",
-      "slug": "Mecll cloudmusic api",
-      "image": "https://SYSTEM-RAM-OP.github.io/icons/Mecll cloudmusic api.svg",
-      "scratchCompatible": false,
-      "docs": false,
-      "by": [
-        "111"
-      ],
-      "original": []
     }
   ]
 }
