@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> 第三方插件站</title>
+    <title>第三方插件站</title>
     <style>
         /* 全局设置 */
         body { 
@@ -73,11 +73,20 @@
             font-weight: 600;
         }
         .card p { 
-            margin: 0; 
+            margin: 0 0 10px 0; /* 稍微留点间距给作者 */
             font-size: 14px; 
             color: #6b7280; 
             line-height: 1.6; 
             flex-grow: 1;
+        }
+
+        /* 作者标签 */
+        .card-author {
+            margin-top: 8px;
+            font-size: 13px;
+            color: #888;
+            font-weight: 400;
+            text-decoration: none;
         }
 
         /* 标签样式 */
@@ -86,6 +95,7 @@
             display: flex; 
             gap: 8px; 
             justify-content: center;
+            flex-wrap: wrap;
         }
         .tag { 
             background: #f3f4f6; 
@@ -96,7 +106,7 @@
             font-weight: 500;
         }
         .tag-tw { 
-            background: #ff4d4f; 
+            background: #ff4d4f; /* 如果你想改成 02Engine 的配色，把这里改成其他颜色 */
             color: #fff; 
         }
     </style>
@@ -109,7 +119,7 @@
     <div id="root" class="extension-grid"></div>
 
   <script>
-    // 1. 换成你刚刚绑定的自定义域名（再也不需要 VPN 了）
+    // 1. 改为读取 GitHub Pages 上的静态 JSON 文件（旧模式）
     fetch('https://system-ram-op.github.io/extensions-v0.json')
         .then(res => {
             if (!res.ok) throw new Error('网络请求失败');
@@ -118,17 +128,23 @@
         .then(data => {
             const container = document.getElementById('root');
             
-            // 2. 注意你的 Worker 返回的是 { extensions: [...] } 的结构
-            // 所以必须写 data.extensions.forEach
+            // 2. 遍历扩展列表
             data.extensions.forEach(ext => {
                 const card = document.createElement('div');
                 card.className = 'card';
                 
+                // 判断作者是否存在，如果有多个作者用 & 连接
+                let authorHtml = '';
+                if (ext.by && Array.isArray(ext.by) && ext.by.length > 0) {
+                    authorHtml = `<div class="card-author">👤 作者：${ext.by.join(' & ')}</div>`;
+                }
+
                 // 卡片内容
                 card.innerHTML = `
                     <img src="${ext.image || 'https://extensions.turbowarp.org/images/unknown.svg'}" alt="${ext.name}">
                     <h3>${ext.name}</h3>
                     <p>${ext.description || '暂无描述'}</p>
+                    ${authorHtml}
                     <div class="card-tags">
                         <span class="tag tag-tw">TurboWarp</span>
                     </div>
@@ -138,7 +154,7 @@
         })
         .catch(err => {
             console.error('加载扩展失败:', err);
-            document.getElementById('root').innerHTML = `<p style="color:red; text-align:center;">加载扩展列表失败，请检查网络。</p>`;
+            document.getElementById('root').innerHTML = `<p style="color:red; text-align:center;">加载扩展列表失败，请检查网络或 JSON 文件是否存在。</p>`;
         });
   </script>
 </body>
