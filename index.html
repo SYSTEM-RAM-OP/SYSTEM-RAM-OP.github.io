@@ -110,7 +110,7 @@
 
   <script>
     // 1. 换成你刚刚绑定的自定义域名（再也不需要 VPN 了）
-    fetch('https://api.extension.cc.cd')
+    fetch('https://system-ram-op.github.io/extensions-v0.json')
         .then(res => {
             if (!res.ok) throw new Error('网络请求失败');
             return res.json();
@@ -138,7 +138,7 @@
         })
         .catch(err => {
             console.error('加载扩展失败:', err);
-            document.getElementById('root').innerHTML = `<p style="color:red; text-align:center;">加载扩展列表失败，请检查网络或 API 状态。</p>`;
+            document.getElementById('root').innerHTML = `<p style="color:red; text-align:center;">加载扩展列表失败，请检查网络。</p>`;
         });
   </script>
 </body>
