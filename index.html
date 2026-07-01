@@ -108,18 +108,23 @@
     
     <div id="root" class="extension-grid"></div>
 
-    <script>
-    // 1. 把地址换成你刚刚在 Cloudflare 部署的 Worker 地址
-    fetch('https://a.mmmh74mmmmh.workers.dev')
-        .then(res => res.json())
+  <script>
+    // 1. 换成你刚刚绑定的自定义域名（再也不需要 VPN 了）
+    fetch('https://api.extension.cc.cd')
+        .then(res => {
+            if (!res.ok) throw new Error('网络请求失败');
+            return res.json();
+        })
         .then(data => {
             const container = document.getElementById('root');
             
-            // 2. 注意！Worker 返回的数据格式是 { "extensions": [...] }
-            // 所以这里一定要加上 .extensions，否则会报错找不到数据
+            // 2. 注意你的 Worker 返回的是 { extensions: [...] } 的结构
+            // 所以必须写 data.extensions.forEach
             data.extensions.forEach(ext => {
                 const card = document.createElement('div');
                 card.className = 'card';
+                
+                // 卡片内容
                 card.innerHTML = `
                     <img src="${ext.image || 'https://extensions.turbowarp.org/images/unknown.svg'}" alt="${ext.name}">
                     <h3>${ext.name}</h3>
@@ -131,7 +136,10 @@
                 container.appendChild(card);
             });
         })
-        .catch(err => console.error('加载失败', err));
-    </script>
+        .catch(err => {
+            console.error('加载扩展失败:', err);
+            document.getElementById('root').innerHTML = `<p style="color:red; text-align:center;">加载扩展列表失败，请检查网络或 API 状态。</p>`;
+        });
+  </script>
 </body>
 </html>
