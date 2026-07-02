@@ -9,7 +9,6 @@
     <link rel="icon" type="image/png" href="https://SYSTEM-RAM-OP.github.io/favicon.png">
     
     <style>
-        /* CSS 变量（统一主题色） */
         :root {
             --primary-red: #ff4d4f;
             --primary-hover: #e03e40;
@@ -43,7 +42,7 @@
         .logo { font-size: 22px; font-weight: 700; color: var(--text-dark); display: flex; align-items: center; gap: 8px; }
         .logo span { color: var(--primary-red); }
 
-        .nav-links { display: flex; gap: 24px; font-size: 15px; font-weight: 500; align-items: center; }
+        .nav-links { display: flex; gap: 24px; font-size: 15px; font-weight: 500; align-items: center; flex-wrap: wrap; }
         .nav-links a:hover { color: var(--primary-red); transition: 0.2s; }
 
         .btn-nav-discord {
@@ -69,7 +68,7 @@
         .hero h1 span { color: var(--primary-red); }
         .hero p { font-size: 18px; color: var(--text-gray); margin-bottom: 40px; }
 
-        /* 按钮样式优化 */
+        /* 按钮 */
         .hero-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
         .btn-hero {
             padding: 12px 24px;
@@ -82,18 +81,13 @@
             gap: 8px;
         }
         .btn-hero:hover { transform: translateY(-2px); }
-
         .btn-main { background: var(--text-dark); color: #fff; }
         .btn-main:hover { background: #1e293b; }
-
         .btn-discord { background: var(--discord-purple); color: #fff; }
         .btn-discord:hover { background: var(--discord-hover); }
-
-        /* 新增加的两种按钮样式 */
         .btn-outline { background: transparent; color: var(--text-dark); border: 2px solid var(--text-dark); }
         .btn-outline:hover { background: var(--text-dark); color: #fff; }
-
-        .btn-teal { background: #0ea5e9; color: #fff; } /* 蓝绿色 */
+        .btn-teal { background: #0ea5e9; color: #fff; }
         .btn-teal:hover { background: #0284c7; }
 
         /* 特色功能板块 */
@@ -118,7 +112,7 @@
         .feature-card h3 { margin-bottom: 8px; font-size: 20px; }
         .feature-card p { color: var(--text-gray); font-size: 15px; }
 
-        /* 重点突出 Discord 社区板块 */
+        /* 社区板块 */
         .discord-promo {
             max-width: 800px;
             margin: 80px auto 60px;
@@ -155,8 +149,8 @@
 
         /* 手机端适配 */
         @media (max-width: 600px) {
-            .nav-links { gap: 12px; font-size: 13px; }
-            .btn-nav-discord { padding: 4px 12px; font-size: 13px; }
+            .navbar { flex-direction: column; gap: 12px; }
+            .nav-links { justify-content: center; gap: 12px; }
             .hero h1 { font-size: 32px; }
             .hero-buttons { flex-direction: column; align-items: center; }
             .btn-hero { width: 100%; justify-content: center; }
@@ -170,9 +164,15 @@
     <nav class="navbar">
         <div class="logo">📦 <span>插件</span>市场</div>
         <div class="nav-links">
-            <a href="#">主页</a>
             <a href="plugins.html">插件市场</a>
             <a href="https://github.com/SYSTEM-RAM-OP/SYSTEM-RAM-OP.github.io" target="_blank">GitHub</a>
+            
+            <!-- 登录/退出按钮组 -->
+            <div id="auth-buttons">
+                <a href="#" id="loginBtn" style="color:#fff; background:#0f172a; padding:6px 16px; border-radius:20px; font-weight:600;">登录</a>
+                <a href="#" id="logoutBtn" style="display:none; color:#ff4d4f; font-weight:600;">退出登录</a>
+            </div>
+
             <a href="https://discord.gg/stZXXwWhcA" target="_blank" class="btn-nav-discord">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037 13.436 13.436 0 0 0-.585 1.26 17.236 17.236 0 0 0-5.183 0 13.195 13.195 0 0 0-.595-1.26.078.078 0 0 0-.079-.037A19.785 19.785 0 0 0 3.682 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.766 19.766 0 0 0 5.884 2.968.078.078 0 0 0 .084-.028 14.202 14.202 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.104 13.104 0 0 1-1.872-.892.077.077 0 0 1-.008-.127 11.332 11.332 0 0 0 2.946-1.925.077.077 0 0 1 .083-.01 14.285 14.285 0 0 0 8.48 0 .075.075 0 0 1 .082.01 11.457 11.457 0 0 0 2.946 1.925.077.077 0 0 1-.008.127 13.17 13.17 0 0 1-1.872.892.076.076 0 0 0-.041.107c.36.695.772 1.362 1.226 1.994a.077.077 0 0 0 .083.028 19.74 19.74 0 0 0 5.884-2.968.077.077 0 0 0 .031-.056c.493-4.688-.477-9.227-2.583-13.66a.07.07 0 0 0-.032-.027z"/></svg>
                 加入社区
@@ -185,12 +185,9 @@
         <h1>打造属于你的 <span>第三方插件生态</span></h1>
         <p>使用自动化工作流，一键发布自定义插件。</p>
         
-        <!-- 👇 这里是新增的四个按钮 👇 -->
         <div class="hero-buttons">
             <a href="plugins.html" class="btn-hero btn-main">🛠️ 浏览插件库</a>
             <a href="https://discord.gg/stZXXwWhcA" target="_blank" class="btn-hero btn-discord">💬 加入 Discord</a>
-            
-            <!-- 根据你的要求加入的新按钮 -->
             <a href="http://hk-5.qwq.fan:42451" target="_blank" class="btn-hero btn-outline">微改版 TurboWarp</a>
             <a href="http://hk-5.qwq.fan:44986/upload.html" target="_blank" class="btn-hero btn-teal">第三方插件库上传工具</a>
         </div>
@@ -201,7 +198,7 @@
         <div class="feature-card">
             <span class="feature-icon">🚀</span>
             <h3>一键发布上传</h3>
-            <p>通过插件上传工具，只需拖拽即可将 JS 插件、SVG 图标同步到插件库。</p>
+            <p>通过本地桌面工具，只需拖拽即可将 JS 插件、SVG 图标同步到插件库。</p>
         </div>
         <div class="feature-card">
             <span class="feature-icon">⚡</span>
@@ -211,14 +208,14 @@
         <div class="feature-card">
             <span class="feature-icon">🌐</span>
             <h3>开放开发者生态</h3>
-            <p>想上传什么就上传什么，你的想象力没有边界。（不要上传色情插件）</p>
+            <p>你的想象力没有边界。</p>
         </div>
     </section>
 
     <!-- 核心 Discord 推广板块 -->
     <section class="discord-promo">
         <h2>💬 加入我们的开发者社区</h2>
-        <p>交流插件开发经验，参与测试，第一时间获取最新扩展更新。</p>
+        <p>交流插件开发经验，参与测试，上传bug。</p>
         <a href="https://discord.gg/stZXXwWhcA" target="_blank" class="btn-discord-large">
             立即加入 Discord 服务器
         </a>
@@ -232,5 +229,133 @@
         </p>
     </footer>
 
+
+    <!-- ========================================= -->
+    <!-- 登录模态框（弹窗） -->
+    <!-- ========================================= -->
+    <div id="loginModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:999; justify-content:center; align-items:center;">
+        <div style="background:#fff; padding:30px; border-radius:16px; width:350px; text-align:center; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
+            <h3 style="margin-bottom:15px; color:#0f172a;">📧 邮箱验证登录</h3>
+            
+            <input type="email" id="emailInput" placeholder="输入常用邮箱" style="width:100%; padding:10px; margin-bottom:12px; border:1px solid #ddd; border-radius:8px; outline:none;">
+            
+            <div style="display:flex; gap:10px; margin-bottom:20px;">
+                <input type="text" id="codeInput" placeholder="输入 6 位验证码" style="flex:1; padding:10px; border:1px solid #ddd; border-radius:8px; outline:none;">
+                <button id="sendCodeBtn" onclick="sendEmailCode()" style="padding:0 16px; background:#0f172a; color:#fff; border:none; border-radius:8px; cursor:pointer; font-weight:600; font-size:14px;">获取验证码</button>
+            </div>
+            
+            <button onclick="handleEmailLogin()" style="width:100%; padding:12px; background:#ff4d4f; color:#fff; border:none; border-radius:8px; font-weight:600; cursor:pointer;">确认登录</button>
+            
+            <button onclick="closeLoginModal()" style="width:100%; padding:8px; margin-top:10px; background:transparent; color:#888; border:none; cursor:pointer;">取消</button>
+            <p id="loginError" style="color:red; font-size:14px; margin-top:10px; display:none;"></p>
+        </div>
+    </div>
+
+    <!-- JS 逻辑代码 -->
+    <script>
+        // 1. 发送邮箱验证码
+        window.sendEmailCode = async () => {
+            const email = document.getElementById('emailInput').value.trim();
+            const errorEl = document.getElementById('loginError');
+            if (!email) return alert('请输入邮箱地址');
+
+            const btn = document.getElementById('sendCodeBtn');
+            btn.disabled = true;
+            btn.innerText = '发送中...';
+            errorEl.style.display = 'none';
+
+            try {
+                const res = await fetch('/api/send-code', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    errorEl.innerText = data.msg;
+                    errorEl.style.color = 'green';
+                    errorEl.style.display = 'block';
+                } else {
+                    throw new Error(data.error || '发送失败');
+                }
+            } catch (e) {
+                errorEl.innerText = '❌ ' + e.message;
+                errorEl.style.color = 'red';
+                errorEl.style.display = 'block';
+            } finally {
+                btn.disabled = false;
+                btn.innerText = '获取验证码';
+            }
+        };
+
+        // 2. 验证验证码并登录
+        window.handleEmailLogin = async () => {
+            const email = document.getElementById('emailInput').value.trim();
+            const code = document.getElementById('codeInput').value.trim();
+            const errorEl = document.getElementById('loginError');
+            if (!code || code.length !== 6) return alert('请输入 6 位验证码');
+
+            try {
+                const res = await fetch('/api/verify-code', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, code })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('userEmail', email);
+                    closeLoginModal();
+                    updateUI(true);
+                } else {
+                    errorEl.innerText = '❌ ' + data.error;
+                    errorEl.style.color = 'red';
+                    errorEl.style.display = 'block';
+                }
+            } catch (e) {
+                alert('网络异常，请检查 Cloudflare Worker 状态');
+            }
+        };
+
+        // 3. 关闭登录弹窗
+        window.closeLoginModal = () => {
+            document.getElementById('loginModal').style.display = 'none';
+            document.getElementById('loginError').style.display = 'none';
+            document.getElementById('emailInput').value = '';
+            document.getElementById('codeInput').value = '';
+        };
+
+        // 4. 更新导航栏 UI 状态
+        function updateUI(isLoggedIn) {
+            const loginBtn = document.getElementById('loginBtn');
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (isLoggedIn) {
+                const email = localStorage.getItem('userEmail');
+                loginBtn.style.display = 'none';
+                logoutBtn.style.display = 'inline-block';
+                const namePart = email ? email.split('@')[0] : '用户';
+                logoutBtn.innerText = `👋 欢迎，${namePart} · 退出`;
+            } else {
+                loginBtn.style.display = 'inline-block';
+                logoutBtn.style.display = 'none';
+            }
+        }
+
+        // 5. 退出登录事件与页面初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('logoutBtn').onclick = function(e) {
+                e.preventDefault();
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userEmail');
+                updateUI(false);
+                location.reload();
+            };
+            document.getElementById('loginBtn').onclick = function(e) {
+                e.preventDefault();
+                document.getElementById('loginModal').style.display = 'flex';
+            };
+            if (localStorage.getItem('isLoggedIn') === 'true') updateUI(true);
+        });
+    </script>
 </body>
 </html>
