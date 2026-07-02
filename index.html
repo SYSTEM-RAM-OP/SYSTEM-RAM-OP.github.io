@@ -3,109 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第三方插件库 - 02Engine 扩展市场</title>
+    
+    <!-- 网站图标 -->
     <link rel="icon" type="image/png" href="https://SYSTEM-RAM-OP.github.io/favicon.png">
-    <link rel="apple-touch-icon" href="https://SYSTEM-RAM-OP.github.io/favicon.png">
-    <title>第三方插件站</title>
+    
     <style>
-        /* 全局设置 */
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
-            background: #f5f7fa; /* 柔和灰底 */
-            margin: 0; 
-            padding: 40px 20px; 
+        /* CSS 变量（统一主题色） */
+        :root {
+            --primary-red: #ff4d4f;
+            --primary-hover: #e03e40;
+            --discord-purple: #5865F2;
+            --discord-hover: #4752C4;
+            --bg-color: #f8fafc;
+            --text-dark: #0f172a;
+            --text-gray: #475569;
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
-        /* 顶部标题 */
-        .header { 
-            max-width: 1200px; 
-            margin: 0 auto 40px auto; 
-            text-align: center; 
-        }
-        .header h1 { 
-            font-size: 32px; 
-            color: #1a1a1a; 
-            margin: 0; 
-            font-weight: 700;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg-color); color: var(--text-dark); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
 
-        /* 优化卡片网格布局（CSS Grid，自动适应手机和电脑屏幕） */
-        .extension-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* 自动换行 */
-            gap: 24px; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-        }
-
-        /* 卡片外观优化 */
-        .card { 
-            background: #ffffff; 
-            border-radius: 16px; /* 更大的圆角 */
-            padding: 24px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04); /* 轻盈的阴影 */
-            transition: all 0.25s ease; /* 添加顺滑的过渡动画 */
-            border: 1px solid #eef0f2; 
-            display: flex; 
-            flex-direction: column; 
+        /* 顶部导航栏 */
+        .navbar {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 16px 5%;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #e2e8f0;
         }
 
-        /* 鼠标悬停卡片时的特效 */
-        .card:hover { 
-            transform: translateY(-6px); /* 微微上浮 */
-            box-shadow: 0 12px 28px rgba(0,0,0,0.08); /* 阴影加深 */
-            border-color: #d1d5db;
-        }
+        .logo { font-size: 22px; font-weight: 700; color: var(--text-dark); display: flex; align-items: center; gap: 8px; }
+        .logo span { color: var(--primary-red); }
 
-        /* 图标优化 */
-        .card img { 
-            width: 64px; 
-            height: 64px; 
-            object-fit: contain; /* 不管上传的 SVG 是宽的还是高的，保证图标不变形且居中 */
-            margin-bottom: 16px; 
-            border-radius: 12px;
-        }
+        .nav-links { display: flex; gap: 24px; font-size: 15px; font-weight: 500; align-items: center; }
+        .nav-links a:hover { color: var(--primary-red); transition: 0.2s; }
 
-        /* 标题和描述 */
-        .card h3 { 
-            margin: 0 0 8px 0; 
-            font-size: 18px; 
-            color: #222; 
+        .btn-nav-discord {
+            background: var(--discord-purple);
+            color: #fff !important;
+            padding: 6px 16px;
+            border-radius: 20px;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
-        .card p { 
-            margin: 0 0 10px 0; /* 稍微留点间距给作者 */
-            font-size: 14px; 
-            color: #6b7280; 
-            line-height: 1.6; 
-            flex-grow: 1;
+        .btn-nav-discord:hover { background: var(--discord-hover) !important; transform: scale(1.02); }
+
+        /* 主视觉 Hero */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 { font-size: 44px; font-weight: 700; margin-bottom: 16px; letter-spacing: -1px; }
+        .hero h1 span { color: var(--primary-red); }
+        .hero p { font-size: 18px; color: var(--text-gray); margin-bottom: 40px; }
+
+        .hero-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+        .btn-hero {
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-main { background: var(--text-dark); color: #fff; }
+        .btn-main:hover { background: #1e293b; transform: translateY(-2px); }
+        .btn-discord { background: var(--discord-purple); color: #fff; }
+        .btn-discord:hover { background: var(--discord-hover); transform: translateY(-2px); }
+
+        /* 特色功能板块 */
+        .features {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .feature-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: var(--shadow-md);
+            transition: 0.3s;
+        }
+        .feature-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--primary-red); }
+        .feature-icon { font-size: 32px; margin-bottom: 12px; display: block; }
+        .feature-card h3 { margin-bottom: 8px; font-size: 20px; }
+        .feature-card p { color: var(--text-gray); font-size: 15px; }
+
+        /* 重点突出 Discord 社区板块 */
+        .discord-promo {
+            max-width: 800px;
+            margin: 80px auto 60px;
+            padding: 50px 20px;
+            text-align: center;
+            background: #1e293b;
+            color: #fff;
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+        }
+        .discord-promo h2 { font-size: 28px; margin-bottom: 12px; }
+        .discord-promo p { color: #94a3b8; margin-bottom: 24px; font-size: 16px; }
+        .btn-discord-large {
+            background: var(--discord-purple);
+            color: #fff;
+            padding: 14px 40px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 18px;
+            display: inline-block;
+            transition: 0.2s;
+        }
+        .btn-discord-large:hover { background: var(--discord-hover); transform: scale(1.05); }
+
+        /* 底部 */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #94a3b8;
+            font-size: 14px;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 40px;
         }
 
-        /* 作者标签 */
-        .card-author {
-            margin-top: 8px;
-            font-size: 13px;
-            color: #888;
-            font-weight: 400;
-            text-decoration: none;
+        /* 手机端适配 */
+        @media (max-width: 600px) {
+            .nav-links { gap: 12px; font-size: 13px; }
+            .btn-nav-discord { padding: 4px 12px; font-size: 13px; }
+            .hero h1 { font-size: 32px; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .discord-promo h2 { font-size: 22px; }
         }
+    </style>
+</head>
+<body>
 
-        /* 标签样式 */
-        .card-tags { 
-            margin-top: 16px; 
-            display: flex; 
-            gap: 8px; 
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .tag { 
-            background: #f3f4f6; 
-            color: #4b5563; 
-            padding: 4px 12px; 
-            border-radius: 20px; 
-            font-size: 12px; 
-            font-weight: 500;
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">📦 <span>插件</span>市场</div>
+        <div class="nav-links">
+            <a href="#">主页</a>
+            <a href="https://SYSTEM-RAM-OP.github.io/extensions-v0.json" target="_blank">插件列表</a>
+            <a href="https://github.com/SYSTEM-RAM-OP/SYSTEM-RAM-OP.github.io" target="_blank">GitHub</a>
+            <!-- Discord 顶部按钮 -->
+            <a href="https://discord.gg/stZXXwWhcA" target="_blank" class="btn-nav-discord">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037 13.436 13.436 0 0 0-.585 1.26 17.236 17.236 0 0 0-5.183 0 13.195 13.195 0 0 0-.595-1.26.078.078 0 0 0-.079-.037A19.785 19.785 0 0 0 3.682 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.766 19.766 0 0 0 5.884 2.968.078.078 0 0 0 .084-.028 14.202 14.202 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.104 13.104 0 0 1-1.872-.892.077.077 0 0 1-.008-.127 11.332 11.332 0 0 0 2.946-1.925.077.077 0 0 1 .083-.01 14.285 14.285 0 0 0 8.48 0 .075.075 0 0 1 .082.01 11.457 11.457 0 0 0 2.946 1.925.077.077 0 0 1-.008.127 13.17 13.17 0 0 1-1.872.892.076.076 0 0 0-.041.107c.36.695.772 1.362 1.226 1.994a.077.077 0 0 0 .083.028 19.74 19.74 0 0 0 5.884-2.968.077.077 0 0 0 .031-.056c.493-4.688-.477-9.227-2.583-13.66a.07.07 0 0 0-.032-.027z"/></svg>
+                加入社区
+            </a>
+        </div>
+    </nav>
+
+    <!-- 主视觉 Hero -->
+    <section class="hero">
+        <h1>打造属于你的 <span>第三方插件生态</span></h1>
+        <p>使用自动化工作流，一键发布自定义插件。这里是 02Engine 开发者的创意聚集地。</p>
+        <div class="hero-buttons">
+            <a href="https://SYSTEM-RAM-OP.github.io/extensions-v0.json" target="_blank" class="btn-hero btn-main">🛠️ 浏览插件库</a>
+            <a href="https://discord.gg/stZXXwWhcA" target="_blank" class="btn-hero btn-discord">💬 加入 Discord</a>
+        </div>
+    </section>
+
+    <!-- 特色功能 -->
+    <section class="features">
+        <div class="feature-card">
+            <span class="feature-icon">🚀</span>
+            <h3>一键发布上传</h3>
+            <p>通过本地桌面工具，只需拖拽即可将 JS 插件、SVG 图标同步到 GitHub，自动生成 JSON。</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">⚡</span>
+            <h3>动态实时加载</h3>
+            <p>插件市场与编辑器无缝对接，无需重启软件，最新插件即刻在扩展面板中呈现。</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">🌐</span>
+            <h3>开放开发者生态</h3>
+            <p>基于 Scratch/TurboWarp 底层构建，支持前端积木 API，你的想象力没有边界。</p>
+        </div>
+    </section>
+
+    <!-- 核心 Discord 推广板块 -->
+    <section class="discord-promo">
+        <h2>💬 加入我们的开发者社区</h2>
+        <p>交流插件开发经验，参与测试，第一时间获取最新扩展更新。</p>
+        <a href="https://discord.gg/stZXXwWhcA" target="_blank" class="btn-discord-large">
+            立即加入 Discord 服务器
+        </a>
+    </section>
+
+    <!-- 底部 -->
+    <footer class="footer">
+        <p>&copy; 2026 第三方插件库 · 基于 02Engine 生态构建</p>
+        <p style="margin-top: 8px; font-size: 12px;">
+            <a href="https://github.com/SYSTEM-RAM-OP/SYSTEM-RAM-OP.github.io" target="_blank" style="color:#475569;">GitHub 仓库</a> · 本站内容仅供学习交流
+        </p>
+    </footer>
+
+</body>
+</html>            font-weight: 500;
         }
         .tag-tw { 
             background: #ff4d4f; /* 如果你想改成 02Engine 的配色，把这里改成其他颜色 */
