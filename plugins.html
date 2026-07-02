@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>插件市场</title>
+    <link rel="icon" type="image/png" href="https://SYSTEM-RAM-OP.github.io/favicon.png">
+    <style>
+        /* CSS 变量（统一主题色） */
+        :root {
+            --primary-red: #ff4d4f;
+            --primary-hover: #e03e40;
+            --discord-purple: #5865F2;
+            --discord-hover: #4752C4;
+            --bg-color: #f8fafc;
+            --text-dark: #0f172a;
+            --text-gray: #475569;
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background: var(--bg-color); 
+            color: var(--text-dark); 
+            line-height: 1.6; 
+        }
+        a { text-decoration: none; color: inherit; }
+
+        /* 顶部导航栏 (与官网首页保持高度统一) */
+        .navbar {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 16px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .logo { font-size: 22px; font-weight: 700; color: var(--text-dark); display: flex; align-items: center; gap: 8px; }
+        .logo span { color: var(--primary-red); }
+
+        .nav-links { display: flex; gap: 24px; font-size: 15px; font-weight: 500; align-items: center; }
+        .nav-links a:hover { color: var(--primary-red); transition: 0.2s; }
+
+        .btn-nav-discord {
+            background: var(--discord-purple);
+            color: #fff !important;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-nav-discord:hover { background: var(--discord-hover) !important; transform: scale(1.02); }
+
+        /* 插件市场主体 */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .page-title { 
+            text-align: center; 
+            font-size: 32px; 
+            font-weight: 700; 
+            color: var(--text-dark);
+            margin-bottom: 40px; 
+        }
+
+        /* 插件卡片网格 */
+        .extension-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); 
+            gap: 24px; 
+        }
+        .card { 
+            background: #ffffff; 
+            border-radius: 16px; 
+            padding: 24px; 
+            box-shadow: var(--shadow-md); 
+            transition: all 0.25s ease; 
+            border: 1px solid #eef0f2; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-align: center; 
+        }
+        .card:hover { 
+            transform: translateY(-6px); 
+            box-shadow: var(--shadow-lg); 
+            border-color: var(--primary-red); 
+        }
+        .card img { 
+            width: 64px; height: 64px; 
+            object-fit: contain; 
+            margin-bottom: 16px; 
+            border-radius: 12px; 
+        }
+        .card h3 { margin: 0 0 8px 0; font-size: 18px; color: #222; font-weight: 600; }
+        .card p { margin: 0 0 10px 0; font-size: 14px; color: #6b7280; line-height: 1.6; flex-grow: 1; }
+        
+        /* 作者标签 */
+        .card-author { margin-top: 8px; font-size: 13px; color: #888; font-weight: 400; }
+
+        /* 标签样式 */
+        .card-tags { margin-top: 16px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+        .tag { 
+            background: #f3f4f6; color: #4b5563; 
+            padding: 4px 12px; border-radius: 20px; 
+            font-size: 12px; font-weight: 500; 
+        }
+        .tag-tw { background: var(--primary-red); color: #fff; }
+
+        /* 手机端适配 */
+        @media (max-width: 600px) {
+            .navbar { flex-wrap: wrap; gap: 12px; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+            .btn-nav-discord { padding: 4px 12px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">📦 <span>插件</span>市场</div>
+        <div class="nav-links">
+            <a href="index.html">返回官网首页</a>
+            <a href="https://github.com/SYSTEM-RAM-OP/SYSTEM-RAM-OP.github.io" target="_blank">GitHub</a>
+            
+            <!-- Discord 顶部按钮 -->
+            <a href="https://discord.gg/stZXXwWhcA" target="_blank" class="btn-nav-discord">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037 13.436 13.436 0 0 0-.585 1.26 17.236 17.236 0 0 0-5.183 0 13.195 13.195 0 0 0-.595-1.26.078.078 0 0 0-.079-.037A19.785 19.785 0 0 0 3.682 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.766 19.766 0 0 0 5.884 2.968.078.078 0 0 0 .084-.028 14.202 14.202 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.104 13.104 0 0 1-1.872-.892.077.077 0 0 1-.008-.127 11.332 11.332 0 0 0 2.946-1.925.077.077 0 0 1 .083-.01 14.285 14.285 0 0 0 8.48 0 .075.075 0 0 1 .082.01 11.457 11.457 0 0 0 2.946 1.925.077.077 0 0 1-.008.127 13.17 13.17 0 0 1-1.872.892.076.076 0 0 0-.041.107c.36.695.772 1.362 1.226 1.994a.077.077 0 0 0 .083.028 19.74 19.74 0 0 0 5.884-2.968.077.077 0 0 0 .031-.056c.493-4.688-.477-9.227-2.583-13.66a.07.07 0 0 0-.032-.027z"/></svg>
+                加入社区
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="page-title">全部插件列表</h1>
+        <div id="root" class="extension-grid"></div>
+    </div>
+
+    <script>
+        // 读取同目录下的 extensions-v0.json 文件
+        fetch('extensions-v0.json')
+            .then(res => {
+                if (!res.ok) throw new Error('数据加载失败');
+                return res.json();
+            })
+            .then(data => {
+                const container = document.getElementById('root');
+                if (!data.extensions || data.extensions.length === 0) {
+                    container.innerHTML = `<p style="text-align:center; color:#6b7280;">目前还没有发布的插件，快去上传一个吧！</p>`;
+                    return;
+                }
+                
+                data.extensions.forEach(ext => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    
+                    // 处理作者显示逻辑
+                    let authorHtml = '';
+                    if (ext.by && Array.isArray(ext.by) && ext.by.length > 0) {
+                        authorHtml = `<div class="card-author">👤 作者：${ext.by.join(' & ')}</div>`;
+                    }
+
+                    // 卡片内容
+                    card.innerHTML = `
+                        <img src="${ext.image || 'https://extensions.turbowarp.org/images/unknown.svg'}" alt="${ext.name}">
+                        <h3>${ext.name}</h3>
+                        <p>${ext.description || '暂无描述'}</p>
+                        ${authorHtml}
+                        <div class="card-tags">
+                            <span class="tag tag-tw">02Engine 插件</span>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            })
+            .catch(err => {
+                console.error('加载扩展失败:', err);
+                document.getElementById('root').innerHTML = `
+                    <div style="text-align:center; padding:40px 0;">
+                        <p style="color:red; margin-bottom:12px;">加载失败，请确保 extensions-v0.json 文件存在且格式正确。</p>
+                        <a href="index.html" style="color:#475569; text-decoration:underline;">返回官网首页</a>
+                    </div>
+                `;
+            });
+    </script>
+</body>
+</html>
