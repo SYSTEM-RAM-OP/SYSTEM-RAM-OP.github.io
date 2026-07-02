@@ -156,7 +156,7 @@
             .then(data => {
                 const container = document.getElementById('root');
                 if (!data.extensions || data.extensions.length === 0) {
-                    container.innerHTML = `<p style="text-align:center; color:#6b7280;">目前还没有发布的插件，快去上传一个吧！</p>`;
+                    container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 60px 0; color: #6b7280; font-size: 16px;">目前还没有发布的插件，快去上传一个吧！</div>`;
                     return;
                 }
                 
