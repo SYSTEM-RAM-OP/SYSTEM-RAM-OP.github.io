@@ -62,28 +62,39 @@
         .hero {
             text-align: center;
             padding: 80px 20px 60px;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
         .hero h1 { font-size: 44px; font-weight: 700; margin-bottom: 16px; letter-spacing: -1px; }
         .hero h1 span { color: var(--primary-red); }
         .hero p { font-size: 18px; color: var(--text-gray); margin-bottom: 40px; }
 
-        .hero-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+        /* 按钮样式优化 */
+        .hero-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
         .btn-hero {
-            padding: 12px 28px;
+            padding: 12px 24px;
             border-radius: 30px;
             font-weight: 600;
-            font-size: 16px;
+            font-size: 15px;
             transition: 0.2s;
             display: inline-flex;
             align-items: center;
             gap: 8px;
         }
+        .btn-hero:hover { transform: translateY(-2px); }
+
         .btn-main { background: var(--text-dark); color: #fff; }
-        .btn-main:hover { background: #1e293b; transform: translateY(-2px); }
+        .btn-main:hover { background: #1e293b; }
+
         .btn-discord { background: var(--discord-purple); color: #fff; }
-        .btn-discord:hover { background: var(--discord-hover); transform: translateY(-2px); }
+        .btn-discord:hover { background: var(--discord-hover); }
+
+        /* 新增加的两种按钮样式 */
+        .btn-outline { background: transparent; color: var(--text-dark); border: 2px solid var(--text-dark); }
+        .btn-outline:hover { background: var(--text-dark); color: #fff; }
+
+        .btn-teal { background: #0ea5e9; color: #fff; } /* 蓝绿色 */
+        .btn-teal:hover { background: #0284c7; }
 
         /* 特色功能板块 */
         .features {
@@ -148,6 +159,7 @@
             .btn-nav-discord { padding: 4px 12px; font-size: 13px; }
             .hero h1 { font-size: 32px; }
             .hero-buttons { flex-direction: column; align-items: center; }
+            .btn-hero { width: 100%; justify-content: center; }
             .discord-promo h2 { font-size: 22px; }
         }
     </style>
@@ -161,7 +173,6 @@
             <a href="#">主页</a>
             <a href="https://SYSTEM-RAM-OP.github.io/extensions-v0.json" target="_blank">插件列表</a>
             <a href="https://github.com/SYSTEM-RAM-OP/SYSTEM-RAM-OP.github.io" target="_blank">GitHub</a>
-            <!-- Discord 顶部按钮 -->
             <a href="https://discord.gg/stZXXwWhcA" target="_blank" class="btn-nav-discord">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037 13.436 13.436 0 0 0-.585 1.26 17.236 17.236 0 0 0-5.183 0 13.195 13.195 0 0 0-.595-1.26.078.078 0 0 0-.079-.037A19.785 19.785 0 0 0 3.682 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.766 19.766 0 0 0 5.884 2.968.078.078 0 0 0 .084-.028 14.202 14.202 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.104 13.104 0 0 1-1.872-.892.077.077 0 0 1-.008-.127 11.332 11.332 0 0 0 2.946-1.925.077.077 0 0 1 .083-.01 14.285 14.285 0 0 0 8.48 0 .075.075 0 0 1 .082.01 11.457 11.457 0 0 0 2.946 1.925.077.077 0 0 1-.008.127 13.17 13.17 0 0 1-1.872.892.076.076 0 0 0-.041.107c.36.695.772 1.362 1.226 1.994a.077.077 0 0 0 .083.028 19.74 19.74 0 0 0 5.884-2.968.077.077 0 0 0 .031-.056c.493-4.688-.477-9.227-2.583-13.66a.07.07 0 0 0-.032-.027z"/></svg>
                 加入社区
@@ -172,10 +183,16 @@
     <!-- 主视觉 Hero -->
     <section class="hero">
         <h1>打造属于你的 <span>第三方插件生态</span></h1>
-        <p>使用自动化工作流，一键发布自定义插件。这里是 02Engine 开发者的创意聚集地。</p>
+        <p>使用自动化工作流，一键发布自定义插件。</p>
+        
+        <!-- 👇 这里是新增的四个按钮 👇 -->
         <div class="hero-buttons">
             <a href="https://SYSTEM-RAM-OP.github.io/extensions-v0.json" target="_blank" class="btn-hero btn-main">🛠️ 浏览插件库</a>
             <a href="https://discord.gg/stZXXwWhcA" target="_blank" class="btn-hero btn-discord">💬 加入 Discord</a>
+            
+            <!-- 根据你的要求加入的新按钮 -->
+            <a href="http://hk-5.qwq.fan:42451" target="_blank" class="btn-hero btn-outline">微改版 TurboWarp</a>
+            <a href="http://hk-5.qwq.fan:44986/upload.html" target="_blank" class="btn-hero btn-teal">第三方插件库上传工具</a>
         </div>
     </section>
 
@@ -184,7 +201,7 @@
         <div class="feature-card">
             <span class="feature-icon">🚀</span>
             <h3>一键发布上传</h3>
-            <p>通过本地桌面工具，只需拖拽即可将 JS 插件、SVG 图标同步到 GitHub，自动生成 JSON。</p>
+            <p>通过插件上传工具，只需拖拽即可将 JS 插件、SVG 图标同步到插件库。</p>
         </div>
         <div class="feature-card">
             <span class="feature-icon">⚡</span>
@@ -194,7 +211,7 @@
         <div class="feature-card">
             <span class="feature-icon">🌐</span>
             <h3>开放开发者生态</h3>
-            <p>基于 Scratch/TurboWarp 底层构建，支持前端积木 API，你的想象力没有边界。</p>
+            <p>想上传什么就上传什么，你的想象力没有边界。（不要上传色情插件）</p>
         </div>
     </section>
 
@@ -209,66 +226,11 @@
 
     <!-- 底部 -->
     <footer class="footer">
-        <p>&copy; 2026 第三方插件库 · 基于 02Engine 生态构建</p>
+        <p>&copy; 2026 第三方插件库</p>
         <p style="margin-top: 8px; font-size: 12px;">
             <a href="https://github.com/SYSTEM-RAM-OP/SYSTEM-RAM-OP.github.io" target="_blank" style="color:#475569;">GitHub 仓库</a> · 本站内容仅供学习交流
         </p>
     </footer>
 
-</body>
-</html>            font-weight: 500;
-        }
-        .tag-tw { 
-            background: #ff4d4f; /* 如果你想改成 02Engine 的配色，把这里改成其他颜色 */
-            color: #fff; 
-        }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h1>第三方插件站</h1>
-    </div>
-    
-    <div id="root" class="extension-grid"></div>
-
-  <script>
-    // 1. 改为读取 GitHub Pages 上的静态 JSON 文件（旧模式）
-    fetch('https://system-ram-op.github.io/extensions-v0.json')
-        .then(res => {
-            if (!res.ok) throw new Error('网络请求失败');
-            return res.json();
-        })
-        .then(data => {
-            const container = document.getElementById('root');
-            
-            // 2. 遍历扩展列表
-            data.extensions.forEach(ext => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                
-                // 判断作者是否存在，如果有多个作者用 & 连接
-                let authorHtml = '';
-                if (ext.by && Array.isArray(ext.by) && ext.by.length > 0) {
-                    authorHtml = `<div class="card-author">👤 作者：${ext.by.join(' & ')}</div>`;
-                }
-
-                // 卡片内容
-                card.innerHTML = `
-                    <img src="${ext.image || 'https://extensions.turbowarp.org/images/unknown.svg'}" alt="${ext.name}">
-                    <h3>${ext.name}</h3>
-                    <p>${ext.description || '暂无描述'}</p>
-                    ${authorHtml}
-                    <div class="card-tags">
-                        <span class="tag tag-tw">TurboWarp</span>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        })
-        .catch(err => {
-            console.error('加载扩展失败:', err);
-            document.getElementById('root').innerHTML = `<p style="color:red; text-align:center;">加载扩展列表失败，请检查网络或 JSON 文件是否存在。</p>`;
-        });
-  </script>
 </body>
 </html>
