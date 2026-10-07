@@ -1,7 +1,7 @@
 site:
   title: SYSTEM-RAM-OP的博客
   author: SYSTEM-RAM-OP
-  baseURL: http://localhost:1717
+  baseURL: https://system-ram-op.github.io
   language: zh-cn
   timezone: Asia/Shanghai
 
