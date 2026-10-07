@@ -1,0 +1,47 @@
+site:
+  title: SYSTEM-RAM-OP的博客
+  author: SYSTEM-RAM-OP
+  baseURL: http://localhost:1717
+  language: zh-cn
+  timezone: Asia/Shanghai
+
+content:
+  store: file
+  dir: content
+
+build:
+  output: public
+
+publish:
+  ping:
+    - https://explore.kite.plus/api/v1/ping
+theme:
+  settings:
+    copyright: © 2026 SYSTEM-RAM-OP
+    avatar: /uploads/Snipaste_2026-09-04_17-22-22.png
+    hero_text: 对电脑又兴趣的入
+    hero_title: 祝你每日开心——SYSTEM-RAM-OP
+    show_banner: false
+    show_issue: false
+    social:
+      - account: SYSTEM-RAM-OP
+        hidden: false
+        label: SYSTEM-RAM-OP
+        platform: github
+        url: https://github.com/SYSTEM-RAM-OP
+      - account: SYSTEM-RAM-OP
+        hidden: false
+        label: SYSTEM-RAM-OP
+        platform: bilibili
+        url: https://space.bilibili.com/457044327
+      - account: SYSTEM-RAM-OP
+        hidden: false
+        label: SYSTEM-RAM-OP
+        platform: youtube
+        url: https://youtube.com/@SYSTEM-RAM-OP
+      - account: SYSTEM-RAM-OP
+        hidden: false
+        label: SYSTEM-RAM-OP
+        platform: mail
+        url: mmmh74mmmh@gmail.com
+  name: almanac
