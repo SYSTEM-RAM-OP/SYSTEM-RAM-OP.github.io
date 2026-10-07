@@ -19,7 +19,7 @@ theme:
   settings:
     copyright: © 2026 SYSTEM-RAM-OP
     avatar: /uploads/Snipaste_2026-09-04_17-22-22.png
-    hero_text: 对电脑又兴趣的入
+    hero_text: 对电脑有兴趣的入
     hero_title: 祝你每日开心——SYSTEM-RAM-OP
     show_banner: false
     show_issue: false
@@ -39,11 +39,8 @@ theme:
         label: SYSTEM-RAM-OP
         platform: youtube
         url: https://youtube.com/@SYSTEM-RAM-OP
-      - account: SYSTEM-RAM-OP
-        hidden: false
-        label: SYSTEM-RAM-OP
-        platform: mail
-        url: mmmh74mmmh@gmail.com
+    web_fonts: true
+    about_page: ""
   name: almanac
 plugins:
   enabled: []
