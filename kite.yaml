@@ -45,3 +45,5 @@ theme:
         platform: mail
         url: mmmh74mmmh@gmail.com
   name: almanac
+plugins:
+  enabled: []
