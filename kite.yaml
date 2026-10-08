@@ -41,8 +41,9 @@ theme:
         url: https://youtube.com/@SYSTEM-RAM-OP
     web_fonts: true
     about_page: ""
+    feed_page: /feed/
     nav:
-      - icon: auto
+      - icon: file-text
         label: ' 文章'
         url: /posts/
   name: almanac
