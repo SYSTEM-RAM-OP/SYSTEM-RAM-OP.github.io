@@ -2,11 +2,11 @@
 id: 01M4JRX5Q1QRM5DJ9VMPZW0X1W
 title: kite
 slug: kite
-status: draft
+status: published
 created_at: 2026-10-10T11:24:24Z
 cover: false
-updated_at: 2026-10-10T12:08:31Z
-deleted_at: 2026-10-10T12:08:31Z
+updated_at: 2026-10-10T12:14:00Z
+published_at: 2026-10-10T12:13:59.065Z
 ---
 
 kite是一个搭建博客的程序，下面会提供视频里的关键指令等，并不会详细说明
