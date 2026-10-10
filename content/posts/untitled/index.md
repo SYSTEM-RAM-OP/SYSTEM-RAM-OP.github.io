@@ -1,12 +1,14 @@
 ---
-id: 01M4JRX5Q1QRM5DJ9VMPZW0X1W
-title: kite
-slug: kite
-status: draft
-created_at: 2026-10-10T11:24:24Z
-cover: false
-updated_at: 2026-10-10T12:08:31Z
-deleted_at: 2026-10-10T12:08:31Z
+id: 01M4JVEB50ZN5TJ8P0BTJ2SBNC
+title: "kite"
+slug: kite-2
+status: published
+created_at: 2026-10-10T12:08:43Z
+categories:
+  - kite
+published_at: 2026-10-10T12:09:25.698Z
+tags:
+  - kite
 ---
 
 kite是一个搭建博客的程序，下面会提供视频里的关键指令等，并不会详细说明
