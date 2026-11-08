@@ -48,4 +48,9 @@ theme:
         url: /posts/
   name: almanac
 plugins:
-  enabled: []
+  enabled: [comments, search]
+  settings:
+    comments:
+      cdn: npmmirror
+      provider: waline
+      server: https://instance.waline.infvar.com/site-84d7wy
