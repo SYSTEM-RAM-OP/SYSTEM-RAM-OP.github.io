@@ -5,8 +5,10 @@ slug: o
 status: published
 created_at: 2026-10-10T11:24:24Z
 cover: false
-updated_at: 2026-10-10T12:16:56Z
+updated_at: 2026-11-08T10:42:56Z
 published_at: 2026-10-10T12:13:59Z
+tags:
+  - kite
 ---
 
 kite是一个搭建博客的程序，下面会提供视频里的关键指令等，并不会详细说明
