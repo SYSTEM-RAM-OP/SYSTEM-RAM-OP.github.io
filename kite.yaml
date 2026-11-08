@@ -4,6 +4,8 @@ site:
   baseURL: https://blo-g.us.ci
   language: zh-cn
   timezone: Asia/Shanghai
+  keywords:
+    - SYSTEM-RAM-OP
 
 content:
   store: file
@@ -42,10 +44,6 @@ theme:
     web_fonts: true
     about_page: ""
     feed_page: /feed/
-    nav:
-      - icon: file-text
-        label: 文章
-        url: /posts/
   name: almanac
 plugins:
   enabled: [comments, search]
